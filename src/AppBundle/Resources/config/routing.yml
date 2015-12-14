@@ -1,0 +1,25 @@
+tracks_index:
+    path: /tracks
+    defaults:
+        _controller: AppBundle:Track:index
+
+tracks_show:
+    path: /tracks/{id}.{_format}
+    defaults:
+        _controller: AppBundle:Track:show
+        _format: html
+    requirements:
+        _format: html|json
+
+artists_index:
+    path: /artists
+    defaults:
+        _controller: AppBundle:Artist:index
+
+artists_show:
+    path: /artists/{id}.{_format}
+    defaults:
+        _controller: AppBundle:Artist:show
+        _format: html
+    requirements:
+        _format: html|json
