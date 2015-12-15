@@ -23,3 +23,16 @@ artists_show:
         _format: html
     requirements:
         _format: html|json
+
+playlists_index:
+    path: /playlists
+    defaults:
+        _controller: AppBundle:Playlist:index
+
+playlists_show:
+    path: /playlists/{id}.{_format}
+    defaults:
+        _controller: AppBundle:Playlist:show
+        _format: html
+    requirements:
+        _format: html|json

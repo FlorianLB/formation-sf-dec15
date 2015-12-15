@@ -15,20 +15,11 @@ class TrackControllerTest extends WebTestCase
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
 
-    public function testShow()
-    {
-        $client = static::createClient();
-
-        $crawler = $client->request('GET', '/tracks/123');
-
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
-    }
-
     public function testShow404()
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/tracks/000');
+        $crawler = $client->request('GET', '/tracks/00');
 
         $this->assertEquals(404, $client->getResponse()->getStatusCode());
     }

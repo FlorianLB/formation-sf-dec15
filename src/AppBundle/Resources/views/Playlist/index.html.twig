@@ -1,0 +1,15 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Playlists - {{ parent() }}{% endblock %}
+
+{% block body_title %}
+    Playlists
+{% endblock %}
+
+{% block body %}
+    <ul>
+        {% for playlist in playlists %}
+            <li><a href="{{ path('playlists_show', {id : playlist.id}) }}">{{ playlist.title }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}

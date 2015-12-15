@@ -1,0 +1,18 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}{{ playlist.title }} - {{ parent() }}{% endblock %}
+
+{% block body_title %}
+    {{ playlist.title }} ({{ totalDuration }} s)
+{% endblock %}
+
+{% block body %}
+    <ul>
+        {% for track in playlist.tracks %}
+            <li>
+                <a href="{{ path('tracks_show', {id : track.id}) }}">{{ track.title }}</a>
+                ({{ track.duration }} s)
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

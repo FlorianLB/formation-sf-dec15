@@ -1,4 +1,21 @@
-<h1>{{ artist.name }}</h1>
+{% extends '::base.html.twig' %}
 
-<p><img src="{{ artist.picture }}" /></p>
-<p>Genre : {{ artist.genre }}</p>
+{% block title %}{{ artist.name }} - {{ parent() }}{% endblock %}
+
+{% block body_title %}
+    {{ artist.name }}
+{% endblock %}
+
+
+{% block body %}
+
+    <p><img src="{{ artist.picture }}" /></p>
+    <p>Genre : {{ artist.genre }}</p>
+
+    <h2>Tracks</h2>
+    <ul>
+        {% for track in artist.tracks %}
+            <li><a href="{{ path('tracks_show', {id : track.id}) }}">{{ track.title }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}

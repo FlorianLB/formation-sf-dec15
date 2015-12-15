@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -28,6 +29,30 @@ class Track
      */
     private $title;
 
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="duration", type="smallint")
+     */
+    private $duration;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Artist", inversedBy="tracks")
+     * @ORM\JoinColumn(name="artist_id", referencedColumnName="id")
+     */
+    private $artist;
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="Playlist", mappedBy="tracks")
+     */
+    private $playlists;
+
+    public function __construct()
+    {
+        $this->playlists = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -62,5 +87,60 @@ class Track
     {
         return $this->title;
     }
-}
 
+    /**
+     * Set artist
+     *
+     * @param Artist $artist
+     *
+     * @return Track
+     */
+    public function setArtist(Artist $artist = null)
+    {
+        $this->artist = $artist;
+
+        return $this;
+    }
+
+    /**
+     * Get artist
+     *
+     * @return Artist
+     */
+    public function getArtist()
+    {
+        return $this->artist;
+    }
+
+    /**
+     * @return int
+     */
+    public function getDuration()
+    {
+        return $this->duration;
+    }
+
+    /**
+     * Set duration
+     *
+     * @param int $duration
+     *
+     * @return Track
+     */
+    public function setDuration($duration)
+    {
+        $this->duration = $duration;
+
+        return $this;
+    }
+
+    /**
+     * Get playlists
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPlaylists()
+    {
+        return $this->playlists;
+    }
+}

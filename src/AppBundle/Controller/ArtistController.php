@@ -10,21 +10,16 @@ class ArtistController extends Controller
 {
     public function indexAction()
     {
-        $tracks = $this->getArtists();
+        $artists = $this->get('app.repository.artist')->findAll();
 
         return $this->render('AppBundle:Artist:index.html.twig', array(
-            'artists' => $tracks
+            'artists' => $artists
         ));
     }
 
     public function showAction($_format, $id)
     {
-        $artist = null;
-        foreach($this->getArtists() as $a) {
-            if ((int) $id === $a['id']) {
-                $artist = $a;
-            }
-        }
+        $artist = $this->get('app.repository.artist')->find($id);
 
         if (null === $artist) {
             throw $this->createNotFoundException();
@@ -37,18 +32,5 @@ class ArtistController extends Controller
         return $this->render('AppBundle:Artist:show.html.twig', array(
             'artist' => $artist
         ));
-    }
-
-    protected function getArtists()
-    {
-        return array(
-            array(
-                'id'    => 1,
-                'name'  => 'Foo fighters',
-                'type'  => 'band', // solo
-                'picture' => 'http://rockmetalmag.fr/wp-content/uploads/2014/05/foo_fighters_52847.jpg',
-                'genre' => 'rock',
-            )
-        );
     }
 }

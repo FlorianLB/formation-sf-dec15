@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -12,6 +13,9 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Artist
 {
+    const TYPE_BAND = 1;
+    const TYPE_SOLO = 2;
+
     /**
      * @var int
      *
@@ -42,6 +46,24 @@ class Artist
      */
     private $genre;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="picture", type="string", length=255)
+     */
+    private $picture;
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="Track", mappedBy="artist")
+     */
+    private $tracks;
+
+    public function __construct()
+    {
+        $this->comments = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -124,5 +146,36 @@ class Artist
     {
         return $this->genre;
     }
-}
 
+    /**
+     * @return string
+     */
+    public function getPicture()
+    {
+        return $this->picture;
+    }
+
+    /**
+     * Set picture
+     *
+     * @param string $picture
+     *
+     * @return Artist
+     */
+    public function setPicture($picture)
+    {
+        $this->picture = $picture;
+
+        return $this;
+    }
+
+    /**
+     * Get tracks
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTracks()
+    {
+        return $this->tracks;
+    }
+}

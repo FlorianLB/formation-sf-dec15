@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services
+        http://symfony.com/schema/dic/services/services-1.0.xsd"
+        >
+    <services>
+
+        <service id="app.repository.track" class="AppBundle\Repository\TrackRepository">
+            <factory service="doctrine.orm.entity_manager" method="getRepository"/>
+            <argument>AppBundle:Track</argument>
+        </service>
+
+        <service id="app.repository.artist" class="AppBundle\Repository\ArtistRepository">
+            <factory service="doctrine.orm.entity_manager" method="getRepository"/>
+            <argument>AppBundle:Artist</argument>
+        </service>
+
+        <service id="app.repository.playlist" class="AppBundle\Repository\PlaylistRepository">
+            <factory service="doctrine.orm.entity_manager" method="getRepository"/>
+            <argument>AppBundle:Playlist</argument>
+        </service>
+
+        <service id="app.playlist.duration_calculator" class="Spotizer\Playlist\DurationCalculator">
+            <argument type="service" id="app.repository.track" />
+        </service>
+    </services>
+</container>

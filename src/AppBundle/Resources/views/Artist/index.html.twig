@@ -1,7 +1,15 @@
-<h1>Artists</h1>
+{% extends '::base.html.twig' %}
 
-<ul>
-    {% for artist in artists %}
-        <li><a href="{{ path('artists_show', {id : artist.id}) }}">{{ artist.name }}</a></li>
-    {% endfor %}
-</ul>
+{% block title %}Artists - {{ parent() }}{% endblock %}
+
+{% block body_title %}
+    Artists
+{% endblock %}
+
+{% block body %}
+    <ul>
+        {% for artist in artists %}
+            <li><a href="{{ path('artists_show', {id : artist.id}) }}">{{ artist.name }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}

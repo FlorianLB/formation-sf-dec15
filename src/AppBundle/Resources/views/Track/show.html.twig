@@ -1,3 +1,14 @@
-<h1>{{ track.title }}</h1>
+{% extends '::base.html.twig' %}
 
-<p>Artist #{{ track.artist }}</p>
+{% block title %}{{ track.title }} - {{ parent() }}{% endblock %}
+
+{% block body_title %}
+    {{ track.title }}
+{% endblock %}
+
+{% block body %}
+    <p>By <strong><a href="{{ path('artists_show', {id: track.artist.id}) }}">{{ track.artist.name }}</a></strong></p>
+
+    <p>Duration : {{ track.duration }} seconds</p>
+
+{% endblock %}

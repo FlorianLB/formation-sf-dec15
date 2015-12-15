@@ -4,13 +4,13 @@ namespace Tests\AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class ArtistControllerTest extends WebTestCase
+class PlaylistControllerTest extends WebTestCase
 {
     public function testIndex()
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/artists');
+        $crawler = $client->request('GET', '/playlists');
 
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
@@ -19,7 +19,7 @@ class ArtistControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/artists/00');
+        $crawler = $client->request('GET', '/playlists/00');
 
         $this->assertEquals(404, $client->getResponse()->getStatusCode());
     }
