@@ -13,10 +13,12 @@
         {% endfor %}
     </ul>
 
-    <p>
-        <a href="{{ path('playlists_new') }}" class="btn btn-success">
-            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-            Add a playlist
-        </a>
-    </p>
+    {% if is_granted('ROLE_USER') %}
+        <p>
+            <a href="{{ path('playlists_new') }}" class="btn btn-success">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                Add a playlist
+            </a>
+        </p>
+    {% endif %}
 {% endblock %}
