@@ -1,0 +1,25 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Stats - {{ parent() }}{% endblock %}
+
+{% block body_title %}
+    Stats
+{% endblock %}
+
+{% block body %}
+
+    <table class="table table-striped">
+        <thead>
+            <tr><th>Artist</th><th>Track count</th></tr>
+        </thead>
+        <tbody>
+            {% for stat in tracksCountGroupByArtist %}
+                <tr>
+                    <td><a href="{{ path('artists_show', {id: stat.id}) }}">{{ stat.name }}</a></td>
+                    <td>{{ stat.nb }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

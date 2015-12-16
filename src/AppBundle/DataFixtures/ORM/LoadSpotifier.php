@@ -70,6 +70,14 @@ class LoadSpotifier implements FixtureInterface
         $manager->persist($track);
 
 
+        $redHot = new Artist();
+        $redHot->setName('Red Hot Chili Peppers');
+        $redHot->setGenre('californian rock');
+        $redHot->setType(Artist::TYPE_BAND);
+        $redHot->setPicture(' http://www.sensationrock.net/wp-content/uploads/2015/10/Red-Hot-Chili-Peppers_11506.jpg');
+        $manager->persist($redHot);
+
+
         $manager->flush();
     }
 }

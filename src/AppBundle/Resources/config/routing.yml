@@ -1,7 +1,17 @@
+homepage:
+    path: /
+    defaults:
+        _controller: AppBundle:Default:index
+
 tracks_index:
     path: /tracks
     defaults:
         _controller: AppBundle:Track:index
+
+tracks_new:
+    path: /tracks/new
+    defaults:
+        _controller: AppBundle:Track:new
 
 tracks_show:
     path: /tracks/{id}.{_format}
@@ -10,11 +20,33 @@ tracks_show:
         _format: html
     requirements:
         _format: html|json
+        id: \d+
+
+tracks_delete:
+    path: /tracks/{id}/delete
+    defaults:
+        _controller: AppBundle:Track:delete
+    requirements:
+        id: \d+
+    methods: [DELETE]
+
+
+artists_new:
+    path: /artists/new
+    defaults:
+        _controller: AppBundle:Artist:new
 
 artists_index:
     path: /artists
     defaults:
         _controller: AppBundle:Artist:index
+
+artists_update:
+    path: /artists/{id}/edit
+    defaults:
+        _controller: AppBundle:Artist:update
+    requirements:
+        id: \d+
 
 artists_show:
     path: /artists/{id}.{_format}
@@ -23,11 +55,19 @@ artists_show:
         _format: html
     requirements:
         _format: html|json
+        id: \d+
+
+
 
 playlists_index:
     path: /playlists
     defaults:
         _controller: AppBundle:Playlist:index
+
+playlists_new:
+    path: /playlists/new
+    defaults:
+        _controller: AppBundle:Playlist:new
 
 playlists_show:
     path: /playlists/{id}.{_format}
@@ -36,3 +76,10 @@ playlists_show:
         _format: html
     requirements:
         _format: html|json
+        id: \d+
+
+
+stats_index:
+    path: /stats
+    defaults:
+        _controller: AppBundle:Stats:index

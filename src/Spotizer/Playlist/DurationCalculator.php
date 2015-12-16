@@ -16,6 +16,11 @@ class DurationCalculator
         $this->trackRepository = $trackRepository;
     }
 
+    /**
+     * @param int $playlistId
+     *
+     * @return int The duration in seconds
+     */
     public function calculate($playlistId)
     {
         $tracks = $this->trackRepository->findByPlaylistId($playlistId);

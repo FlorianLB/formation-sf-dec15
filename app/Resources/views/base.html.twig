@@ -15,13 +15,14 @@
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#">Spotizer</a>
+                    <a class="navbar-brand" href="{{ path('homepage') }}">Spotizer</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
                         <li><a href="{{ path('artists_index') }}">Artists</a></li>
                         <li><a href="{{ path('tracks_index') }}">Tracks</a></li>
                         <li><a href="{{ path('playlists_index') }}">Playlists</a></li>
+                        <li><a href="{{ path('stats_index') }}">Statistics</a></li>
                     </ul>
                 </div>
             </div>

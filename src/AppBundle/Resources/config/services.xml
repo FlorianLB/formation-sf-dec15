@@ -24,5 +24,21 @@
         <service id="app.playlist.duration_calculator" class="Spotizer\Playlist\DurationCalculator">
             <argument type="service" id="app.repository.track" />
         </service>
+
+        <service id="app.stats.track_reporting" class="Spotizer\Stats\TrackReporting">
+            <argument type="service" id="doctrine.orm.entity_manager" />
+        </service>
+
+        <service id="app.form_type.artist" class="AppBundle\Form\Type\ArtistType">
+            <tag name="form.type"/>
+        </service>
+
+        <service id="app.form_type.track" class="AppBundle\Form\Type\TrackType">
+            <tag name="form.type"/>
+        </service>
+
+        <service id="app.form_type.playlist" class="AppBundle\Form\Type\PlaylistType">
+            <tag name="form.type"/>
+        </service>
     </services>
 </container>

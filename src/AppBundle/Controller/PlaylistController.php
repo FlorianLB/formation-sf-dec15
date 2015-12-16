@@ -2,8 +2,11 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Playlist;
+use AppBundle\Form\Type\PlaylistType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 
 class PlaylistController extends Controller
 {
@@ -34,5 +37,24 @@ class PlaylistController extends Controller
             'playlist' => $playlist,
             'totalDuration' => $totalDuration
         ));
+    }
+
+    public function newAction(Request $request)
+    {
+        $playlist = new Playlist();
+        $form = $this->createForm(PlaylistType::class, $playlist);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->get('doctrine.orm.entity_manager');
+            $entityManager->persist($playlist);
+            $entityManager->flush();
+
+            return $this->redirect($this->generateUrl('artists_index'));
+        }
+
+        return $this->render('AppBundle:Playlist:new.html.twig', [
+            'form' => $form->createView()
+        ]);
     }
 }
