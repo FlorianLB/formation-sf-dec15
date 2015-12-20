@@ -15,10 +15,7 @@
 
     {% if is_granted('ROLE_USER') %}
         <p>
-            <a href="{{ path('artists_new') }}" class="btn btn-success">
-                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                Add an artist
-            </a>
+            {{ button.link_button('add', 'Add an artist', 'artists_new') }}
         </p>
     {% endif %}
 {% endblock %}

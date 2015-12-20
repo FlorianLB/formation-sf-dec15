@@ -15,4 +15,10 @@ class TrackRepository extends \Doctrine\ORM\EntityRepository
 
         return $qb->getQuery()->getResult();
     }
+
+    public function findAllOrderedByTitleQueryBuilder()
+    {
+        return $this->createQueryBuilder('t')
+            ->orderBy('t.title', 'DESC');
+    }
 }

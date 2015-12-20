@@ -1,0 +1,27 @@
+{% macro link_button(type, text, route, params) %}
+
+    {% if type == 'add' %}
+        {% set btnClass = 'success' %}
+        {% set glyph = 'plus' %}
+    {% elseif type == 'update' %}
+        {% set btnClass = 'primary' %}
+        {% set glyph = 'pencil' %}
+    {% else %}
+        {% set btnClass = '' %}
+        {% set glyph = '' %}
+    {% endif %}
+
+    <a href="{{ path(route, params|default({})) }}" class="btn btn-{{ btnClass }}">
+        <span class="glyphicon glyphicon-{{ glyph }}" aria-hidden="true"></span>
+        {{ text }}
+    </a>
+{% endmacro %}
+
+{% macro delete_form(form, text) %}
+    {{ form_start(form) }}
+        <button type="submit" class="btn btn-danger">
+            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+            {{ text|default("Delete") }}
+        </button>
+    {{ form_end(form) }}
+{% endmacro %}

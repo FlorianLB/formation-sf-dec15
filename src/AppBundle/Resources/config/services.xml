@@ -21,6 +21,11 @@
             <argument>AppBundle:Playlist</argument>
         </service>
 
+        <service id="app.repository.user" class="AppBundle\Repository\UserRepository">
+            <factory service="doctrine.orm.entity_manager" method="getRepository"/>
+            <argument>AppBundle:User</argument>
+        </service>
+
         <service id="app.playlist.duration_calculator" class="Spotizer\Playlist\DurationCalculator">
             <argument type="service" id="app.repository.track" />
         </service>
@@ -40,5 +45,34 @@
         <service id="app.form_type.playlist" class="AppBundle\Form\Type\PlaylistType">
             <tag name="form.type"/>
         </service>
+
+        <service id="app.twig_extension" class="AppBundle\Twig\Extension\AppExtension">
+            <argument type="service" id="app.playlist.duration_calculator"/>
+            <tag name="twig.extension"/>
+        </service>
+
+        <service id="app.notifier.artist" class="Spotizer\Notification\ArtistNotifier">
+            <argument type="service" id="mailer"/>
+            <argument>%mailer_from%</argument>
+            <argument>%mailer_to_artist%</argument>
+        </service>
+
+        <service id="app.listener.artist" class="AppBundle\EventListener\ArtistListener">
+            <argument type="service" id="app.notifier.artist"/>
+            <tag name="kernel.event_listener" method="onArtistCreated" event="app.artist.created"/>
+        </service>
+
+        <service id="app.form_type.playlist_tracks" class="AppBundle\Form\Type\PlaylistTracksType">
+            <tag name="form.type"/>
+        </service>
+
+        <service id="app.form_type.venue" class="AppBundle\Form\Type\VenueType">
+            <tag name="form.type"/>
+        </service>
+
+        <service id="app.authenticator_api_token" class="AppBundle\Security\ApiTokenAuthenticator">
+            <argument type="service" id="app.repository.user"/>
+        </service>
+
     </services>
 </container>

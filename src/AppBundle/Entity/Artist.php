@@ -60,9 +60,17 @@ class Artist
      */
     private $tracks;
 
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="Venue", mappedBy="artist", cascade={"persist", "remove"})
+     */
+    private $venues;
+
     public function __construct()
     {
-        $this->comments = new ArrayCollection();
+        $this->tracks = new ArrayCollection();
+        $this->venues = new ArrayCollection();
     }
 
     /**
@@ -177,5 +185,25 @@ class Artist
     public function getTracks()
     {
         return $this->tracks;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getVenues()
+    {
+        return $this->venues;
+    }
+
+    public function addVenue(Venue $venue)
+    {
+        $this->venues->add($venue);
+        $venue->setArtist($this);
+    }
+
+    public function removeVenue(Venue $venue)
+    {
+        $this->venues->removeElement($venue);
+        $venue->setArtist(null);
     }
 }

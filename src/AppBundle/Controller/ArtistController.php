@@ -3,6 +3,8 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Artist;
+use AppBundle\Event\ArtistEvents;
+use AppBundle\Event\ArtistEvent;
 use AppBundle\Form\Type\ArtistType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -46,6 +48,11 @@ class ArtistController extends Controller
             $entityManager = $this->get('doctrine.orm.entity_manager');
             $entityManager->persist($artist);
             $entityManager->flush();
+
+            // $this->get('app.notifier.artist')->notifyNewArtist($artist);
+
+            $this->get('event_dispatcher')->dispatch(ArtistEvents::ARTIST_CREATED, new ArtistEvent($artist));
+
 
             return $this->redirect($this->generateUrl('artists_index'));
         }

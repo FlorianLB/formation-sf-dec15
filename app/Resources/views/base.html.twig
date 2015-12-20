@@ -1,3 +1,5 @@
+{% import 'macros/button.html.twig' as button %}
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -36,6 +38,9 @@
             {% block body %}{% endblock %}
         </div>
 
-        {% block javascripts %}{% endblock %}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        {% block javascripts %}
+
+        {% endblock %}
     </body>
 </html>

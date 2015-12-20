@@ -15,10 +15,7 @@
 
     {% if is_granted('ROLE_USER') %}
         <p>
-            <a href="{{ path('tracks_new') }}" class="btn btn-success">
-                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                Add a track
-            </a>
+            {{ button.link_button('add', 'Add a track', 'tracks_new') }}
         </p>
     {% endif %}
 {% endblock %}

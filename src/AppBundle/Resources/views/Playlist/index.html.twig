@@ -9,16 +9,16 @@
 {% block body %}
     <ul>
         {% for playlist in playlists %}
-            <li><a href="{{ path('playlists_show', {id : playlist.id}) }}">{{ playlist.title }}</a></li>
+            <li>
+                <a href="{{ path('playlists_show', {id : playlist.id}) }}">{{ playlist.title }}</a>
+                ({{ playlist_duration(playlist)|sec_to_min }})
+            </li>
         {% endfor %}
     </ul>
 
     {% if is_granted('ROLE_USER') %}
         <p>
-            <a href="{{ path('playlists_new') }}" class="btn btn-success">
-                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                Add a playlist
-            </a>
+            {{ button.link_button('add', 'Add a playlist', 'playlists_new') }}
         </p>
     {% endif %}
 {% endblock %}

@@ -10,7 +10,7 @@
         Vous êtes connecté en tant que <strong>{{ app.user.username }}</strong>.
         <a class="btn btn-primary" href="{{ path('logout') }}">Se déconnecter</a>
     {% else %}
-        <a class="btn btn-primary" href="{{ path('login') }}">Se connecter</a>
+        <a class="btn btn-primary" href="{{ path('fos_user_security_login') }}">Se connecter</a>
     {% endif %}
 
 {% endblock %}

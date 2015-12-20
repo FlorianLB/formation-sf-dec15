@@ -2,17 +2,11 @@
 
 namespace AppBundle\Form\Type;
 
-use AppBundle\Entity\Artist;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\UrlType;
 
-class PlaylistType extends AbstractType
+class VenueType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -21,8 +15,7 @@ class PlaylistType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title', TextType::class)
-            ->add('tracks', PlaylistTracksType::class)
+            ->add('location')
         ;
     }
 
@@ -32,9 +25,7 @@ class PlaylistType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Playlist'
+            'data_class' => 'AppBundle\Entity\Venue'
         ));
     }
-
-
 }

@@ -13,12 +13,7 @@
 
     {% if is_granted('ROLE_ADMIN') %}
         <p>
-            {{ form_start(delete_form) }}
-                <button type="submit" class="btn btn-danger">
-                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-                    Supprimer
-                </button>
-            {{ form_end(delete_form) }}
+            {{ button.delete_form(delete_form) }}
         </p>
     {% endif %}
 {% endblock %}

@@ -4,13 +4,8 @@ app:
 
 
 # Security
-
-login:
-    path:     /login
-    defaults: { _controller: AppBundle:Security:login }
-
-login_check:
-    path: /login_check
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
 
 logout:
     path: /logout

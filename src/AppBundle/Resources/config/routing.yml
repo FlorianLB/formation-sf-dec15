@@ -83,3 +83,10 @@ stats_index:
     path: /stats
     defaults:
         _controller: AppBundle:Stats:index
+        _format: html
+
+stats_index_json:
+    path: /api/stats.json
+    defaults:
+        _controller: AppBundle:Stats:index
+        _format: json
