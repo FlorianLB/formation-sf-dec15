@@ -49,10 +49,7 @@ class ArtistController extends Controller
             $entityManager->persist($artist);
             $entityManager->flush();
 
-            // $this->get('app.notifier.artist')->notifyNewArtist($artist);
-
             $this->get('event_dispatcher')->dispatch(ArtistEvents::ARTIST_CREATED, new ArtistEvent($artist));
-
 
             return $this->redirect($this->generateUrl('artists_index'));
         }

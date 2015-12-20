@@ -6,7 +6,7 @@ use AppBundle\Event\ArtistEvent;
 use Spotizer\Notification\ArtistNotifier;
 use Symfony\Component\EventDispatcher\Event;
 
-class ArtistListener
+class ArtistNotifierListener
 {
     /**
      * @var ArtistNotifier

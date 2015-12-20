@@ -25,3 +25,8 @@ monolog:
             level: debug
         console:
             type:  console
+        artists:
+            type:   stream
+            path:   "%kernel.logs_dir%/artists_%kernel.environment%.log"
+            level:  debug
+            channels: [artists]

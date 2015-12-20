@@ -17,6 +17,11 @@ monolog:
             type:   stream
             path:   "%kernel.logs_dir%/%kernel.environment%.log"
             level:  debug
+        artists:
+            type:   stream
+            path:   "%kernel.logs_dir%/artists_%kernel.environment%.log"
+            level:  debug
+            channels: [artists]
         console:
             type:   console
             bubble: false
@@ -41,5 +46,5 @@ monolog:
         #    type:   chromephp
         #    level:  info
 
-#swiftmailer:
-#    delivery_address: me@example.com
+swiftmailer:
+    delivery_address: flonqueubrochard@clever-age.com

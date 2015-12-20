@@ -57,8 +57,13 @@
             <argument>%mailer_to_artist%</argument>
         </service>
 
-        <service id="app.listener.artist" class="AppBundle\EventListener\ArtistListener">
+        <service id="app.listener.notifier_artist" class="AppBundle\EventListener\ArtistNotifierListener">
             <argument type="service" id="app.notifier.artist"/>
+            <tag name="kernel.event_listener" method="onArtistCreated" event="app.artist.created"/>
+        </service>
+
+        <service id="app.listener.logger_artist" class="AppBundle\EventListener\ArtistLoggerListener">
+            <argument type="service" id="monolog.logger.artists"/>
             <tag name="kernel.event_listener" method="onArtistCreated" event="app.artist.created"/>
         </service>
 
